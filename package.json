@@ -1,0 +1,28 @@
+{
+  "name": "cse340-projects",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/AbelChiwandire/cse340-projects#readme",
+  "bugs": {
+    "url": "https://github.com/AbelChiwandire/cse340-projects/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbelChiwandire/cse340-projects.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
