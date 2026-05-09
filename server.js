@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, 'src/views'));
   * Routes
   */
 app.get('/', async (req, res) => {
-  const title = "Home";
+  const title = "Welcome to the<br>CSE 340 Service Network!";
   res.render('home', { title });
 });
 
@@ -42,6 +42,11 @@ app.get('/organizations', async (req, res) => {
 app.get('/projects', async (req, res) => {
   const title = "Service Projects";
   res.render('projects', { title });
+});
+
+app.get('/categories', async (req, res) => {
+  const title = "Service Categories";
+  res.render('categories', { title });
 });
 
 app.listen(PORT, () => {

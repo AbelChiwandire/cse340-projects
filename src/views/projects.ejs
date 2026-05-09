@@ -1,14 +1,31 @@
 <%- include("partials/header") %>
 
 <main>
-    <h1><%= title %></h1>
+    <div class="layout-padding">
+        <h1 class="header-margin-top header-font-size"><%= title %></h1>
 
-    <h2>Upcoming Service Projects</h2>
-    <ul>
-        <li>Park Cleanup - Join us to clean up local parks and make them beautiful!</li>
-        <li>Food Drive - Help collect and distribute food to those in need.</li>
-        <li>Community Tutoring - Volunteer to tutor students in various subjects.</li>
-    </ul>
+        <p class="description-font-size gray-text">Upcoming Service Projects</p>
+        <ul class="cards-container project-cards">
+            <li class="project-card card">
+                <div class="project-details card-details">
+                    <h2>Park Cleanup</h2>
+                    <p>Join us to clean up local parks and make them beautiful!</p>
+                </div>
+            </li>
+            <li class="project-card card">
+                <div class="project-details card-details">
+                    <h2>Food Drive</h2>
+                    <p>Help collect and distribute food to those in need.</p>
+                </div>
+            </li>
+            <li class="project-card card">
+                <div class="project-details card-details">
+                    <h2>Community Tutoring</h2>
+                    <p>Volunteer to tutor students in various subjects.</p>
+                </div>
+            </li>
+        </ul>
+    </div>
 
 </main>
 

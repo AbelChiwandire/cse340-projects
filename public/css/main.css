@@ -1,30 +1,468 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+/* Global CSS */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
+:root {
+	--primary: 213 65% 18%;
+	--secondary: 210 20% 25%;
+	--accent: 213 50% 30%;
+	--accent-2: 0 0% 100%;
+	--background: 210 20% 98%;
+	--foreground: 218 30% 12%;
+	--muted-foreground: 215 16% 47%;
+	--border: 214 20% 88%;
+
+	--emerald: 142 80% 15%;
+	--amber: 25 95% 20%;
+	--blue: 225 100% 18%;
+	--violet:262 85% 18%;
+	--rose:345 90% 18%;
+
+	--box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--border-radius: 16px;
+
+}
+
+/* =========================
+   GLOBAL RESET
+========================= */
+a {
+	text-decoration: none;
+	color: hsl(var(--accent-2) / 0.9);
+}
+
+button {
+	background: none;
+	border: none;
+	color: hsl(var(--accent-2) / 0.9);
+	cursor: pointer;
+}
+
+li {
+	list-style: none;
+}
+
+/* =========================
+   GLOBAL UTILITY CLASSES
+========================= */
+.layout-padding {
+	padding: 0 2rem;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.margin-top {
+	margin-top: 2rem;
+}
+
+.header-margin-top {
+	margin-top: 4rem;
+}
+
+.header-font-size {
+	font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.description-font-size {
+	font-size: clamp(1rem, 3vw, 1.2rem);
+}
+
+.invert-white {
+  filter: brightness(0) invert(1);
+}
+
+.gray-text {
+	color: hsl(var(--secondary));
+}
+/* =========================
+   GLOBAL BASE
+========================= */
+
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+  display: flex;
+  flex-direction: column;
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+	font-family: 'Inter', sans-serif;
+	background-color: hsl(var(--background));
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+h1, h2, h3 {
+	font-family: 'Playfair', serif;
+	color: hsl(var(--foreground));
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
-    }
+html,
+body {
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  text-align: center;
+	padding: 1.5rem 0;
+  margin-top: 7rem;
+	color: hsl(var(--accent-2) / 0.9);
+	background-color: hsl(var(--primary));
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+	position: sticky;
+	padding: 10px 0;
+  top: 0;
+  z-index: 50;
+
+	background-color: hsl(var(--primary));
+}
+
+.header-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	height: 45px;
+	width: auto;
+}
+
+.logo img {
+	height: 100%;
+	width: auto;
+	object-fit: contain;
+}
+
+/* Navigation */
+.nav-links {
+	display: block;
+}
+
+.nav-inner {
+	padding: 0 2rem;
+	overflow: hidden;
+}
+
+.nav-links li {
+	padding: 0.5rem 0;
+}
+
+.nav-links li a {
+	display: block;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+}
+
+.nav-links li a:hover,
+.nav-links li a.selected {
+	color: hsl(var(--accent-2));
+	background-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-links li:last-child {
+	margin-bottom: 10px;
+}
+
+/* Hamburger Menu */
+.hamburger {
+	display: block;
+	width: 45px;
+	height: 45px;
+	font-size: 2rem;
+	border-radius: 8px;
+}
+
+.navigation {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+
+	display: grid;
+	grid-template-rows: 0fr;
+	overflow: hidden;
+
+	background-color: hsl(var(--primary));
+	transition: grid-template-rows 0.3s ease;
+	z-index: 55;
+}
+
+.navigation.show {
+	grid-template-rows: 1fr;
+}
+
+.hamburger:hover {
+	background-color: hsl(var(--accent-2) / 0.2);
+}
+
+.hamburger::before {
+	content: '≡';
+}
+
+.hamburger.show::before {
+	content: '✕';
+	font-size: 1.5rem;
+}
+
+
+@media (min-width: 769px) {
+	.hamburger {
+		display: none;
+	}
+
+	.navigation {
+		position: static;
+		display: block;
+		grid-template-rows: unset;
+		overflow: visible;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 1rem;
+	}
+	.nav-links li {
+		padding: 0;
+		border-bottom: none;
+	}
+
+	.nav-links li:last-child {
+		margin-bottom: 0;
+	}
+
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero-content {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+
+	padding: 4rem 2rem;
+	background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+}
+
+.hero-text {
+	flex: 1;
+}
+
+.hero-content h1 {
+	color: hsl(var(--accent-2));
+	line-height: 0.9;
+}
+
+.hero-content p {
+	color: hsl(var(--accent-2) / 0.8);
+	max-width: 36rem;
+	margin-top: 1rem;
+}
+
+.hero-img-container {
+	border: 1px solid hsl(var(--muted-foreground));
+	background: hsl(var(--muted-foreground) / 0.3);
+	border-radius: var(--border-radius);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	max-width: 21rem;
+}
+
+.hero-img {
+	width: 70%;
+	height: auto;
+}
+
+@media (min-width: 769px) {
+	.hero-content {
+		flex-direction: row;
+		gap: 3rem;
+	}
+
+	.layout-padding {
+		padding: 0 4rem;
+	}
+}
+
+/* =========================
+   HOME PAGE - PLACEHOLDER
+========================= */
+.get-involved h2{
+	font-size: 2.5rem;
+}
+
+/* =========================
+   ORGANIZATIONS PAGE 
+========================= */
+.cards-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+
+	margin-top: 3rem;
+}
+
+.card {
+	border-radius: var(--border-radius);
+
+	display: flex;
+	flex-direction: column;
+	transition: all 0.3s ease;
+}
+
+.organization-card {
+	border: 1px solid hsl(var(--border));
+}
+
+.organization-card:hover {
+	border: 1px solid hsl(var(--secondary) / 0.2);
+}
+
+.card:hover {
+	box-shadow: var(--box-shadow);
+}
+
+.logo-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem 1.5rem;
+	border-radius: 16px 16px 0 0;
+	background-color: hsl(var(--accent) / 0.05);
+}
+
+.logo-container img {
+  height: 5rem; 
+  width: auto;
+  object-fit: contain;
+}
+
+.card-details {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	padding: 1rem 1.5rem;
+}
+
+.organization-details {
+	background-color: hsl(var(--accent-2));
+	border-radius: 0 0 16px 16px;
+	flex: 1;
+}
+
+.organization-details p {
+	flex: 1;
+}
+
+.organization-card a {
+	color: hsl(var(--secondary));
+}
+
+/* =========================
+  PROJECTS PAGE 
+========================= */
+.project-cards li:nth-child(1) div {
+	background-color: hsl(142 70% 35% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--emerald) / 0.2);
+	color: hsl(var(--emerald));
+	h2 {
+		color: hsl(var(--emerald));
+	}
+}
+
+.project-cards li:nth-child(2) div {
+	background-color: hsl(35 90% 40% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--amber) / 0.2);
+	color: hsl(var(--amber));
+	h2 {
+		color: hsl(var(--amber));
+	}
+}
+
+.project-cards li:nth-child(3) div {
+	background-color: hsl(215 90% 50% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--blue) / 0.2);
+	color: hsl(var(--blue));
+	h2 {
+		color: hsl(var(--blue));
+	}
+}
+
+/* =========================
+  CATEGORIES PAGE 
+========================= */
+.categories-container {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+	margin-top: 3rem;
+}
+
+@media (min-width: 480px) {
+	.categories-container {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+.categories-container div:nth-child(1) {
+	background-color: hsl(142 70% 35% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--emerald) / 0.2);
+	color: hsl(var(--emerald));
+	h2 {
+		color: hsl(var(--emerald));
+	}
+}
+
+.categories-container div:nth-child(2) {
+	background-color: hsl(215 90% 50% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--blue) / 0.2);
+	color: hsl(var(--blue));
+	h2 {
+		color: hsl(var(--blue));
+	}
+}
+
+.categories-container div:nth-child(3) {
+	background-color: hsl(262 70% 45% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--violet) / 0.2);
+	color: hsl(var(--violet));
+	h2 {
+		color: hsl(var(--violet));
+	}
+}
+
+.categories-container div:nth-child(4) {
+	background-color: hsl(340 80% 45% / 0.1);
+	border-radius: var(--border-radius);
+	border: 1px solid hsl(var(--rose) / 0.2);
+	color: hsl(var(--rose));
+	h2 {
+		color: hsl(var(--rose));
+	}
 }
