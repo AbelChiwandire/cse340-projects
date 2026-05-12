@@ -6,36 +6,18 @@
 
         <p class="description-font-size gray-text">Here are a few of our partner organizations:</p>
         <ul class="cards-container">
-            <li class="organization-card card">
-                <div class="logo-container">
-                    <img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo">
-                </div>
-                <div class="organization-details card-details">
-                    <h2>BrightFuture Builders</h2>
-                    <p>Building brighter futures through community construction and development projects.</p>
-                    <a href="mailto:info@brightfuture.org">info@brightfuture.org</a>
-                </div>
-            </li>
-            <li class="organization-card card">
-                <div class="logo-container">
-                    <img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo">
-                </div>
-                <div class="organization-details card-details">
-                    <h2>GreenHarvest Growers</h2>
-                    <p>Cultivating sustainable food systems and community gardens for those in need.</p>
-                    <a href="mailto:contact@greenharvest.org">contact@greenharvest.org</a>
-                </div>
-            </li>
-            <li class="organization-card card">
-                <div class="logo-container">
-                    <img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo">
-                </div>
-                <div class="organization-details card-details">
-                    <h2>UnityServe Volunteers</h2>
-                    <p>Uniting volunteers to serve communities through impactful social programs.</p>
-                    <a href="mailto:hello@unityserve.org">hello@unityserve.org</a>
-                </div>
-            </li>
+            <% organizations.forEach(organization => { %>
+                <li class="organization-card card">
+                    <div class="logo-container">
+                        <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> Logo">
+                    </div>
+                    <div class="organization-details card-details">
+                        <h2><%= organization.name %></h2>
+                        <p><%= organization.description %></p>
+                        <a href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
+                    </div>
+                </li>
+            <% }); %>
         </ul>
     </div>
 
