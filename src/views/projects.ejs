@@ -5,25 +5,22 @@
         <h1 class="header-margin-top header-font-size"><%= title %></h1>
 
         <p class="description-font-size gray-text">Upcoming Service Projects</p>
-        <ul class="cards-container project-cards">
-            <li class="project-card card">
-                <div class="project-details card-details">
-                    <h2>Park Cleanup</h2>
-                    <p>Join us to clean up local parks and make them beautiful!</p>
-                </div>
-            </li>
-            <li class="project-card card">
-                <div class="project-details card-details">
-                    <h2>Food Drive</h2>
-                    <p>Help collect and distribute food to those in need.</p>
-                </div>
-            </li>
-            <li class="project-card card">
-                <div class="project-details card-details">
-                    <h2>Community Tutoring</h2>
-                    <p>Volunteer to tutor students in various subjects.</p>
-                </div>
-            </li>
+        <ul class="project-cards">
+            <% projects.forEach(project => { %>
+                <li class="project-card">
+                    <span><%=
+                         project.date.toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric'
+                         }) 
+                    %></span>
+                    <div>
+                        <span><%= project.title %></span>
+                        <span>(<%= project.name %>)</span>
+                    </div>
+                </li>
+            <% }); %>
         </ul>
     </div>
 
