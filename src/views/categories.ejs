@@ -10,11 +10,6 @@
             <% categories.forEach(category => { %>
                 <div class="category-card card card-details">
                     <h2><%= category.name %></h2>
-                    <% category.projects.forEach(project => { %>
-                        <ul>
-                            <li><%= project %></li>
-                        </ul>
-                    <% }); %>
                 </div>
             <% }); %>
         </div>

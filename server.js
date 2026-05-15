@@ -34,7 +34,7 @@ app.set('views', path.join(__dirname, 'src/views'));
   * Routes
   */
 app.get('/', async (req, res) => {
-  const title = "Welcome to the<br>CSE 340 Service Network!";
+  const title = "Welcome | CSE340 Service Network";
   res.render('home', { title });
 });
 
