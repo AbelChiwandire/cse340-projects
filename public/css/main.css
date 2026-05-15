@@ -429,6 +429,14 @@ header {
 	margin-top: 3rem;
 }
 
+.category-card ul {
+	padding-left: 1.5rem;
+}
+
+.category-card li {
+	list-style: revert;
+}
+
 @media (min-width: 480px) {
 	.categories-container {
 		grid-template-columns: 1fr 1fr;
@@ -462,15 +470,5 @@ header {
 	color: hsl(var(--violet));
 	h2 {
 		color: hsl(var(--violet));
-	}
-}
-
-.categories-container div:nth-child(4) {
-	background-color: hsl(340 80% 45% / 0.1);
-	border-radius: var(--border-radius);
-	border: 1px solid hsl(var(--rose) / 0.2);
-	color: hsl(var(--rose));
-	h2 {
-		color: hsl(var(--rose));
 	}
 }
