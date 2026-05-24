@@ -8,9 +8,9 @@
 
         <div class="categories-container">
             <% categories.forEach(category => { %>
-                <div class="category-card card card-details">
+                <a href="/categories/<%= category.category_id %>" class="category-card card card-details">
                     <h2><%= category.name %></h2>
-                </div>
+                </a>
             <% }); %>
         </div>
     </div>

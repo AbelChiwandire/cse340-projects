@@ -5,20 +5,24 @@
         <h1 class="header-margin-top header-font-size"><%= title %></h1>
 
         <p class="description-font-size gray-text">Here are a few of our partner organizations:</p>
-        <ul class="cards-container">
+        <div class="cards-container">
             <% organizations.forEach(organization => { %>
-                <li class="organization-card card">
-                    <div class="logo-container">
-                        <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> Logo">
+                <div class="organization-card card">
+                    <a href="/organizations/<%= organization.organization_id %>">
+                        <div class="logo-container">
+                            <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> Logo">
+                        </div>
+                        <div class="organization-details card-details">
+                            <h2><%= organization.name %></h2>
+                            <p><%= organization.description %></p>
+                        </div>
+                    </a>
+                    <div class="organization-mail">
+                        <a class="generic-link" href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
                     </div>
-                    <div class="organization-details card-details">
-                        <h2><%= organization.name %></h2>
-                        <p><%= organization.description %></p>
-                        <a href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
-                    </div>
-                </li>
+                </div>
             <% }); %>
-        </ul>
+        </div>
     </div>
 
 </main>

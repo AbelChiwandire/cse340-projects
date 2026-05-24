@@ -5,23 +5,27 @@
         <h1 class="header-margin-top header-font-size"><%= title %></h1>
 
         <p class="description-font-size gray-text">Upcoming Service Projects</p>
-        <ul class="project-cards">
+        <div class="project-cards">
             <% projects.forEach(project => { %>
-                <li class="project-card">
-                    <span><%=
-                         project.date.toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric'
-                         }) 
-                    %></span>
+                <div class="project-card">
                     <div>
-                        <span><%= project.title %></span>
-                        <span>(<%= project.name %>)</span>
+                        <a class="projects-project-link generic-link" href="/projects/<%= project.project_id %>">
+                            <span><%=
+                                project.date.toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric',
+                                    year: 'numeric'
+                                }) 
+                            %></span>
+                            <span><%= project.title %></span>
+                        </a>
                     </div>
-                </li>
+                    <div>
+                        <a class="generic-link" href="/organizations/<%= project.organization_id %>">(<%= project.organization_name %>)</a>
+                    </div>
+                </div>
             <% }); %>
-        </ul>
+        </div>
     </div>
 
 </main>

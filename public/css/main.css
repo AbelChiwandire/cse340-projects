@@ -35,7 +35,6 @@
 ========================= */
 a {
 	text-decoration: none;
-	color: hsl(var(--accent-2) / 0.9);
 }
 
 button {
@@ -82,6 +81,41 @@ li {
 
 .gray-text {
 	color: hsl(var(--secondary));
+}
+
+.back-btn svg {
+	width: 12px;
+	height: auto;
+}
+
+.back-btn {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin: 3rem 0 2rem;
+	color: hsl(var(--secondary));
+}
+
+.back-btn:hover {
+	color: hsl(var(--foreground));
+}
+
+.font-size-sm {
+	font-size: 0.9rem;
+}
+
+.generic-link {
+	color: hsl(var(--primary));
+	font-weight: 500;
+}
+
+.generic-link:hover {
+	text-decoration: underline;
+}
+
+.no-projects {
+	text-align: center;
+	font-style: italic;
 }
 /* =========================
    GLOBAL BASE
@@ -140,6 +174,10 @@ header {
   z-index: 50;
 
 	background-color: hsl(var(--primary));
+}
+
+header a {
+	color: hsl(var(--accent-2) / 0.9);
 }
 
 .header-content {
@@ -343,6 +381,7 @@ header {
 
 .organization-card {
 	border: 1px solid hsl(var(--border));
+	border-radius: var(--border-radius);
 }
 
 .organization-card:hover {
@@ -378,7 +417,6 @@ header {
 
 .organization-details {
 	background-color: hsl(var(--accent-2));
-	border-radius: 0 0 16px 16px;
 	flex: 1;
 }
 
@@ -388,6 +426,81 @@ header {
 
 .organization-card a {
 	color: hsl(var(--secondary));
+}
+
+.org-profile {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.organization-mail {
+	padding: 0 1.5rem 1rem;
+	background-color: hsl(var(--accent-2));
+	border-radius: 0 0 16px 16px;
+}
+
+.organization-details-cards {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;	
+	margin-top: 1rem;
+}
+
+.past-projects {
+	margin-top: 2rem;
+	opacity: 0.8;
+}
+
+.org-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	border-radius: 16px;
+	max-width: 110px;
+	align-self: flex-start;
+	background-color: hsl(var(--accent) / 0.05);
+}
+
+.org-logo img {
+  height: 4rem; 
+  width: auto;
+  object-fit: contain;
+}
+
+.org-details {
+	display: flex;
+	flex-direction: column;
+	gap : 0.5rem;
+}
+
+.border {
+	border-top: 1px solid hsl(var(--border));
+	margin: 2rem 0 3rem;
+}
+
+.bar-card {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	padding: 1rem 1.5rem;
+	background-color: hsl(var(--accent-2));
+	color: hsl(var(--secondary));
+	border: 1px solid hsl(var(--border));
+	border-radius: var(--border-radius);
+}
+
+@media (min-width: 480px) {
+	.org-profile {
+		flex-direction: row;
+	}
+
+	.bar-card {
+		flex-direction: row;
+		gap: 4rem;
+	}
 }
 
 /* =========================
@@ -409,13 +522,46 @@ header {
 	border-bottom: 1px solid hsl(var(--border));
 }
 
+a.project-card {
+	color: hsl(var(--foreground));
+}
+
+.project-details-card, 
+.category-card {
+	background-color: hsl(var(--accent-2));
+	border: 1px solid hsl(var(--border));
+	padding: 2rem;
+}
+
+.project-details-card:hover {
+	box-shadow: none;
+}
+
+.project-details-description {
+	border-top: 1px solid hsl(var(--border));
+	padding-top: 1rem;
+}
+
+.project-details-card .header {
+	line-height: 0.95;
+}
+
 .project-card:last-child {
 	border-bottom: none;
 }
 
+.projects-project-link {
+	display: flex;
+	gap: 1rem;
+}
+
+.project-cards a {
+	max-width: fit-content;
+}
+
 @media (min-width: 480px) {
 	.project-card {
-		grid-template-columns: 150px 1fr;
+		grid-template-columns: 350px 1fr;
 	}
 }
 
@@ -437,38 +583,27 @@ header {
 	list-style: revert;
 }
 
+.category-tags {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
+.category-tag {
+	padding: 0.3rem 0.5rem;
+	border: 1px solid hsl(var(--border));
+	border-radius: var(--border-radius);
+	color: hsl(var(--foreground));
+	font-size: 13px;
+}
+
+.category-tag:hover,
+.bar-card:hover {
+	background-color: hsl(var(--muted-foreground) / 0.2);
+}
+
 @media (min-width: 480px) {
 	.categories-container {
 		grid-template-columns: 1fr 1fr;
-	}
-}
-
-.categories-container div:nth-child(1) {
-	background-color: hsl(142 70% 35% / 0.1);
-	border-radius: var(--border-radius);
-	border: 1px solid hsl(var(--emerald) / 0.2);
-	color: hsl(var(--emerald));
-	h2 {
-		color: hsl(var(--emerald));
-	}
-}
-
-.categories-container div:nth-child(2) {
-	background-color: hsl(215 90% 50% / 0.1);
-	border-radius: var(--border-radius);
-	border: 1px solid hsl(var(--blue) / 0.2);
-	color: hsl(var(--blue));
-	h2 {
-		color: hsl(var(--blue));
-	}
-}
-
-.categories-container div:nth-child(3) {
-	background-color: hsl(262 70% 45% / 0.1);
-	border-radius: var(--border-radius);
-	border: 1px solid hsl(var(--violet) / 0.2);
-	color: hsl(var(--violet));
-	h2 {
-		color: hsl(var(--violet));
 	}
 }
