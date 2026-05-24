@@ -11,6 +11,26 @@ export async function getAllProjects() {
     return result.rows;
 }
 
+export async function getProjectsByOrganizationId (organizationId) {
+      const query = `
+        SELECT
+          project_id,
+          organization_id,
+          title,
+          description,
+          location,
+          date
+        FROM project
+        WHERE organization_id = $1
+        ORDER BY date;
+      `;
+      
+      const queryParams = [organizationId];
+      const result = await db.query(query, queryParams);
+
+      return result.rows;
+};
+
 export async function getUpcomingProjects(number_of_projects) {
     const today = new Date().toISOString().split('T')[0];
 

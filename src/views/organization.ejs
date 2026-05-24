@@ -20,13 +20,13 @@
 
         <div class="border"></div>
 
-        <div class="upcoming-projects">
-            <h2>Upcoming Projects</h2>
-            <% if (upcomingProjects.length === 0) { %>
+        <div>
+            <h2>Service Projects</h2>
+            <% if (projects.length === 0) { %>
                 <p class="no-projects">No upcoming projects at the moment. Please check back later!</p>
             <% } else { %>
                 <div class="organization-details-cards">
-                    <% upcomingProjects.forEach(project => { %>
+                    <% projects.forEach(project => { %>
                         <a class="bar-card" href="/projects/<%= project.project_id %>">
                             <span class="font-size-sm"><%=
                                 project.date.toLocaleDateString('en-US', {
@@ -41,29 +41,6 @@
                 </div>
             <% } %>
         </div>
-
-        <div class="past-projects">
-            <h2>Past Projects</h2>
-            <% if (pastProjects.length === 0) { %>
-                <p class="no-projects">No past projects to display.</p>
-            <% } else { %>
-                <ul class="organization-details-cards">
-                    <% pastProjects.forEach(project => { %>
-                        <li class="bar-card">
-                            <span class="font-size-sm"><%=
-                                project.date.toLocaleDateString('en-US', {
-                                    month: 'short',
-                                    day: 'numeric',
-                                    year: 'numeric'
-                                }); 
-                            %></span>
-                            <h3><%= project.title %></h3>
-                        </li>
-                    <% }); %>
-                </ul>
-            <% } %>
-        </div>
-
     </div>
 </main>
 
