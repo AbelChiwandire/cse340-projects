@@ -8,7 +8,7 @@
         <div class="cards-container">
             <% organizations.forEach(organization => { %>
                 <div class="organization-card card">
-                    <a href="/organizations/<%= organization.organization_id %>">
+                    <a class="card-link" href="/organizations/<%= organization.organization_id %>">
                         <div class="logo-container">
                             <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> Logo">
                         </div>
@@ -23,6 +23,7 @@
                 </div>
             <% }); %>
         </div>
+        <p><a class="new-organization-link" href="/new-organization">Add a new organization</a></p>
     </div>
 
 </main>
