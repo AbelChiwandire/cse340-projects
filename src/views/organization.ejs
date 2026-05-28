@@ -14,7 +14,10 @@
             <div class="org-details">
                 <h1 class="header-font-size"><%= organization.name %></h1>
                 <p><%= organization.description %></p>
-                <a class="generic-link" href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
+                <div class="org-footer">
+                    <a class="generic-link" href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
+                    <a href="/edit-organization/<%= organization.organization_id %>">Edit Organization</a>
+                </div>
             </div>
         </div>
 
