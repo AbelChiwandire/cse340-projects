@@ -482,6 +482,7 @@ header a {
 	background-color: hsl(var(--accent-2));
 	color: hsl(var(--secondary));
 	border: 1px solid hsl(var(--border));
+	border-radius: var(--border-radius);
 }
 
 .new-organization-link {
@@ -515,7 +516,9 @@ header a {
 	border-radius: var(--border-radius);
 }
 
-input, textarea {
+input,
+textarea,
+select {
 	padding: 0.5rem;
 	border: 1px solid hsl(var(--border));
 	border-radius: var(--border-radius);
@@ -530,8 +533,30 @@ input, textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
 	outline: 1px solid hsl(var(--primary));
+}
+
+select, select::picker(select) {
+  	appearance: base-select;
+}
+
+select::picker(select) {
+	background-color: hsl(var(--accent-2));
+	border-radius: 8px;
+}
+
+select option {
+	color: hsl(var(--foreground));
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+select option:hover,
+select option:checked {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-2));
 }
 
 @media (min-width: 480px) {
