@@ -2,7 +2,8 @@
 
 <main>
   <div class="layout-padding">
-    <h1 class="header-margin-top header-font-size"><%= title %></h1>
+    <h1 class="header-margin-top header-font-size"><%= organization.name %></h1>
+    <h2><%= title %></h2>
 
   <form class="organization-form" action="/edit-organization/<%= organization.organization_id %>" method="POST">
       <div class="form-group">

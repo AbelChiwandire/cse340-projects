@@ -16,7 +16,6 @@
                 <p><%= organization.description %></p>
                 <div class="org-footer">
                     <a class="generic-link" href="mailto:<%= organization.contact_email %>"><%= organization.contact_email %></a>
-                    <a href="/edit-organization/<%= organization.organization_id %>">Edit Organization</a>
                 </div>
             </div>
         </div>
@@ -44,6 +43,7 @@
                 </div>
             <% } %>
         </div>
+        <a class="new-organization-link" href="/edit-organization/<%= organization.organization_id %>">Edit Organization</a>
     </div>
 </main>
 

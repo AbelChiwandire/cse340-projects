@@ -9,6 +9,9 @@
 
         <h1 class="header-font-size"><%= category.name %></h1>
 
+        <% if (projects.length === 0) { %>
+            <p class="no-projects">No upcoming projects at the moment. Please check back later!</p>
+        <% } else { %>
         <div class="organization-details-cards">
             <% projects.forEach(project => { %>
                 <a class="bar-card" href="/projects/<%= project.project_id %>">
@@ -21,7 +24,8 @@
                     %></span>
                     <h3><%= project.title %></h3>
                 </a>
-            <% }); %>
+            <% });
+        } %>
         </div>
         <a class="new-organization-link" href="/edit-category/<%= category.category_id %>">Update Category</a>
     </div>
