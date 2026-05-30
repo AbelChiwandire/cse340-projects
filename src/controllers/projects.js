@@ -39,6 +39,8 @@ export const showProjectDetailsPage = async (req, res) => {
     const project = await getProjectDetails(projectId);
     const categories = await getCategoriesByProjectId(projectId);
 
+    console.log("categories", categories);
+
     res.render('project', { title, project, categories });
 }
 

@@ -559,6 +559,10 @@ select option:checked {
   color: hsl(var(--accent-2));
 }
 
+input[type="checkbox"] {
+	accent-color: hsl(var(--accent));
+}
+
 @media (min-width: 480px) {
 	.org-profile {
 		flex-direction: row;
@@ -631,6 +635,16 @@ a.project-card {
 	max-width: fit-content;
 }
 
+.edit-categories {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+}
+
+.edit-categories svg {
+	width: 15px;
+}
+
 @media (min-width: 480px) {
 	.project-card {
 		grid-template-columns: 350px 1fr;
@@ -672,6 +686,22 @@ a.project-card {
 .category-tag:hover,
 .bar-card:hover {
 	background-color: hsl(var(--muted-foreground) / 0.2);
+}
+
+.update-categories-form {
+	margin-top: 2rem;
+}
+
+.assign-category {
+	display: flex;
+	flex-direction: row;
+	gap: 3rem;
+}
+
+.category-container {
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
 }
 
 @media (min-width: 480px) {
