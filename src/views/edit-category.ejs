@@ -1,0 +1,18 @@
+<%- include('partials/header.ejs') %>
+
+<main>
+    <div class="layout-padding">
+        <h1 class="header-margin-top header-font-size"><%= categoryDetails.name %></h1>
+        <h2>Update Category</h2>
+
+        <form class="organization-form" action="/edit-category/<%= categoryDetails.category_id %>" method="POST">
+            <div class="form-group">
+                <label for="name">Category Name:</label>
+                <input type="text" id="name" name="name" value="<%= categoryDetails.name %>" maxlength="100" required>
+            </div>
+            <button class="new-organization-link organization-submit" type="submit">Update Category</button>
+        </form>
+    </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
