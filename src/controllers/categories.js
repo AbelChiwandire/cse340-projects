@@ -6,7 +6,7 @@ export const categoryValidation = [
     body('name')
         .trim()
         .notEmpty().withMessage('Category Name is required')
-        .isLength({ min: 3, max: 100 }).withMessage('Category message should be between 3 and 100 characters.')
+        .isLength({ min: 3, max: 100 }).withMessage('Category name should be between 3 and 100 characters.')
 ];
 
 export const showCategoriesPage = async (req, res) => {
