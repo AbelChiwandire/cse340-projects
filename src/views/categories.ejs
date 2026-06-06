@@ -13,7 +13,9 @@
                 </a>
             <% }); %>
         </div>
-        <a class="new-organization-link" href="/new-category">Add a new Category</a>
+        <% if (user && user.role_name === 'admin') { %>
+            <a class="new-organization-link" href="/new-category">Add a new Category</a>
+        <% } %>
     </div>
 </main>
 

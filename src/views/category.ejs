@@ -27,7 +27,9 @@
             <% });
         } %>
         </div>
-        <a class="new-organization-link" href="/edit-category/<%= category.category_id %>">Update Category</a>
+        <% if (user && user.role_name === 'admin') { %>
+            <a class="new-organization-link" href="/edit-category/<%= category.category_id %>">Update Category</a>
+        <% } %>
     </div>
 </main>
 

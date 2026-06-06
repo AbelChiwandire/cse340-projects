@@ -26,7 +26,9 @@
                 </div>
             <% }); %>
         </div>
-        <p><a class="new-organization-link" href="/new-project">Add a New Service Project</a></p>
+        <% if (user && user.role_name === 'admin') { %>
+            <p><a class="new-organization-link" href="/new-project">Add a New Service Project</a></p>
+        <% } %>
     </div>
 
 </main>

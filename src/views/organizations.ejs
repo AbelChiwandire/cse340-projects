@@ -23,7 +23,9 @@
                 </div>
             <% }); %>
         </div>
-        <p><a class="new-organization-link" href="/new-organization">Add a new organization</a></p>
+        <% if (user && user.role_name === 'admin') { %>
+            <p><a class="new-organization-link" href="/new-organization">Add a new organization</a></p>
+        <% } %>
     </div>
 
 </main>
