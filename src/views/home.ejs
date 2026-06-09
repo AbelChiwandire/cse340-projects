@@ -18,6 +18,7 @@
         <p class="margin-top">Explore our website to find local organizations, discover service projects, and learn about different volunteer categories. Whether you're looking to make a difference in your community or just want to give back, there's something for everyone!</p>
     </section>
     <% if (isLoggedIn) { %>
+        <a class="view-users generic-link" href="/users">View All Users</a>
         <p><a class="new-organization-link" href="/dashboard">My Dashboard</a></p>
     <% } %>
 </main>

@@ -1,0 +1,32 @@
+<%- include("partials/header") %>
+
+<main>
+    <div class="layout-padding">
+        <h1 class="header-margin-top header-font-size"><%= title %></h1>
+
+        <div>
+            <table class="user-table">
+                <caption class="sr-only">Registered Users</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% allUsers.forEach(user => { %>
+                        <tr>
+                            <td><%= user.name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.role_name %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<%- include("partials/footer") %>

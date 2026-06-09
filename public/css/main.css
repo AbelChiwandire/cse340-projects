@@ -786,3 +786,54 @@ a.project-card {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+/* User table */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  min-width: 0;
+  background-color: hsl(var(--accent-2));
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  margin-top: 2rem;
+}
+
+.user-table th,
+.user-table td {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid hsl(var(--border));
+  text-align: left;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.user-table thead {
+  background-color: hsl(var(--background));
+}
+
+.user-table th {
+  color: hsl(var(--secondary));
+  font-weight: 600;
+}
+
+.user-table td {
+  color: hsl(var(--foreground));
+}
+
+.user-table tbody tr:nth-child(even) {
+  background-color: hsl(var(--background));
+}
+
+.user-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .user-table th,
+  .user-table td {
+    padding: 0.85rem 0.75rem;
+    font-size: 0.95rem;
+  }
+}
