@@ -101,3 +101,80 @@ export const updateProject = async (projectId, title, description, date, locatio
 
   return result.rows[0].project_id;
 };
+
+export const addVolunteerToProject = async (project_id, user_id) => {
+    const query = `
+        INSERT INTO project_volunteers (project_id, user_id)
+        VALUES ($1, $2)
+        ON CONFLICT DO NOTHING
+        RETURNING project_id;
+    `;
+    const queryParams = [project_id, user_id];
+
+    const result = await db.query(query, queryParams);
+
+    if (result.rows.length === 0) {
+        // already exists
+        return { status: 'already_volunteered' };
+    }
+
+    return { status: 'volunteered' };
+};
+
+export const removeVolunteerFromProject = async (project_id, user_id) => {
+    const query = `
+        DELETE FROM project_volunteers
+        WHERE project_id = $1 AND user_id = $2
+        RETURNING project_id;
+    `;
+    const queryParams = [project_id, user_id];
+
+    const result = await db.query(query, queryParams);
+
+    if (result.rows.length === 0) {
+        return { status: 'not_volunteered' };
+    }
+
+    return { status: 'unvolunteered' };
+};
+
+export const getUserVolunteeredProjects = async (user_id) => {
+    const query = `
+        SELECT p.project_id, p.title, p.description, p.location, p.date
+        FROM project p
+        JOIN project_volunteers pv ON p.project_id = pv.project_id
+        WHERE pv.user_id = $1
+    `;
+
+    const result = await db.query(query, [user_id]);
+
+    if (result.rows.length === 0) {
+        throw new Error('No volunteered projects found for user');
+    }
+
+    if (process.env.ENABLE_SQL_LOGGING === 'true') {
+        console.log('Retrieved volunteered projects for user ID:', user_id);
+    }
+
+    return result.rows;
+}
+
+export const isUserVolunteer = async (project_id, user_id) => {
+    const query = `
+        SELECT 1
+        FROM project_volunteers
+        WHERE project_id = $1 AND user_id = $2
+        LIMIT 1;
+    `;
+    const queryParams = [project_id, user_id];
+
+    try {
+        const result = await db.query(query, queryParams);
+
+        return result.rows.length > 0;
+
+    } catch (error) {
+        console.error('Error checking volunteer status:', error.message);
+        throw new Error('Database error while checking volunteer status');
+    }
+};

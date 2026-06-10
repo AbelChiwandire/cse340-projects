@@ -1,7 +1,7 @@
 import express from 'express';
 import { showHomePage } from './controllers/index.js';
 import { showOrganizationsPage, showOrganizationDetailsPage, showNewOrganizationForm, processNewOrganizationForm, showEditOrganizationForm, processEditOrganizationForm } from './controllers/organizations.js';
-import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
+import { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm, isVolunteer, volunteerForProject, unvolunteerFromProject } from './controllers/projects.js';
 import { showCategoriesPage, showCategoryPage, showAssignCategoriesForm, processAssignCategoriesForm, showNewCategoryForm, processNewCategoryForm, categoryValidation, showEditCategoryForm, processEditCategoryForm } from './controllers/categories.js';
 import { testErrorPage } from './controllers/errors.js';
 import { organizationValidation } from './controllers/organizations.js';
@@ -15,7 +15,7 @@ router.get('/projects', showProjectsPage);
 router.get('/categories', showCategoriesPage);
 router.get('/test-error', testErrorPage);
 
-router.get('/projects/:id', showProjectDetailsPage);
+router.get('/projects/:id', isVolunteer, showProjectDetailsPage);
 router.get('/organizations/:id', showOrganizationDetailsPage);
 router.get('/categories/:id', showCategoryPage);
 
@@ -28,6 +28,8 @@ router.get('/new-project', requireRole('admin'), showNewProjectForm);
 router.post('/new-project', requireRole('admin'), projectValidation, processNewProjectForm);
 router.get('/edit-project/:id', requireRole('admin'), showEditProjectForm);
 router.post('/edit-project/:id', requireRole('admin'), projectValidation, processEditProjectForm);
+router.post('/projects/:id/volunteer', requireLogin, volunteerForProject);
+router.post('/projects/:id/volunteer/remove', requireLogin, unvolunteerFromProject);
 
 router.get('/new-category', requireRole('admin'), showNewCategoryForm);
 router.post('/new-category', requireRole('admin'), categoryValidation, processNewCategoryForm);

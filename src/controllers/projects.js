@@ -1,4 +1,4 @@
-import { getUpcomingProjects, getProjectDetails, createProject, updateProject } from '../models/projects.js';
+import { getUpcomingProjects, getProjectDetails, createProject, updateProject, addVolunteerToProject, removeVolunteerFromProject, isUserVolunteer } from '../models/projects.js';
 import { getCategoriesByProjectId } from '../models/categories.js';
 import { getAllOrganizations } from '../models/organizations.js'
 import { body, validationResult } from 'express-validator';
@@ -96,4 +96,52 @@ export const processEditProjectForm = async (req, res) => {
     req.flash('success', 'Project updated successfully!');
 
     res.redirect(`/projects/${projectId}`);
+};
+
+export const volunteerForProject = async (req, res) => {
+    const projectId = req.params.id;
+    const userId = res.locals.user.user_id;
+
+    try {
+        await addVolunteerToProject(projectId, userId);
+
+        return res.redirect(`/projects/${projectId}`);
+
+    } catch (error) {
+        console.error('Error volunteering for project:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+
+export const unvolunteerFromProject = async (req, res) => {
+    const projectId = req.params.id;
+    const userId = res.locals.user.user_id;
+
+    try {
+        await removeVolunteerFromProject(projectId, userId);
+
+        return res.redirect(`/projects/${projectId}`);
+
+    } catch (error) {
+        console.error('Error unvolunteering from project:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+
+export const isVolunteer = async (req, res, next) => {
+    if (!res.locals.user) {
+        res.locals.isVolunteer = false;
+        return next();
+    }
+
+    const projectId = req.params.id;
+    const userId = res.locals.user.user_id;
+
+    try {
+        const result = await isUserVolunteer(projectId, userId);
+        res.locals.isVolunteer = result;
+        next();
+    } catch (error) {
+        next(error);
+    }
 };

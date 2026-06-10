@@ -7,6 +7,38 @@
         <h2>Dashboard</h2>
         <p>Name: <%= name %></p>
         <p>Username: <%= email %></p>
+
+        <section class="dashboard-project-section">
+            <h2>My Volunteer Projects</h2>
+
+            <% if (volunteeredProjects && volunteeredProjects.length) { %>
+                <div class="dashboard-projects">
+                    <% volunteeredProjects.forEach(project => { %>
+                        <article class="dashboard-project">
+                            <div>
+                                <h3 class="dashboard-project-title">
+                                    <a class="generic-link" href="/projects/<%= project.project_id %>"><%= project.title %></a>
+                                </h3>
+                                <p class="dashboard-project-meta">
+                                    <%= new Date(project.date).toLocaleDateString('en-US', {
+                                        month: 'short',
+                                        day: 'numeric',
+                                        year: 'numeric'
+                                    }) %>
+                                </p>
+                            </div>
+                            <form action="/projects/<%= project.project_id %>/volunteer/remove" method="POST">
+                                <button type="submit" class="dashboard-remove-volunteer-button">
+                                    Remove me from this project
+                                </button>
+                            </form>
+                        </article>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p class="dashboard-no-projects">You have not signed up to volunteer for any projects yet.</p>
+            <% } %>
+        </section>
     </div>
 </main>
 
