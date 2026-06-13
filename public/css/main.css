@@ -699,6 +699,10 @@ a.project-card {
 	transition: opacity 0.2s ease, background-color 0.2s ease;
 }
 
+.view-users {
+	margin-top: 1.5rem;
+}
+
 .dashboard-remove-volunteer-button:hover {
 	opacity: 0.9;
 }
